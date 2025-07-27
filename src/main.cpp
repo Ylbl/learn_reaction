@@ -1,5 +1,5 @@
 #include "gtest/gtest.h"
-#include "dataSource.h"
+#include "datasource.h"
 
 TEST(BasicTest, CalcTest) {
     auto a = reaction::var(1);
