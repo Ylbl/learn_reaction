@@ -1,6 +1,6 @@
 #include "gtest/gtest.h"
 #include "datasource.h"
-
+#include "spdlog/spdlog.h"
 TEST(BasicTest, CalcTest)
 {
     auto a = reaction::var(1);
@@ -15,8 +15,15 @@ TEST(BasicTest, CalcTest)
     EXPECT_EQ(dds.get(), "14.140000");
 }
 
+TEST(BasicTest, test1)
+{
+    spdlog::warn("warn");
+}
+
 int main(int argc, char **argv)
 {
     ::testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
+//    spdlog::warn("warn");
+//    return 0;
 }

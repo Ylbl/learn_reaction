@@ -13,4 +13,7 @@ target_include_directories(SSH PUBLIC include)
 target_link_libraries(SSH PUBLIC reaction)
 
 find_package(GTest CONFIG REQUIRED)
-    target_link_libraries(SSH PRIVATE GTest::gtest GTest::gtest_main GTest::gmock GTest::gmock_main)
+target_link_libraries(SSH PRIVATE GTest::gtest GTest::gtest_main GTest::gmock GTest::gmock_main)
+
+find_package(spdlog CONFIG REQUIRED)
+target_link_libraries(SSH PRIVATE spdlog::spdlog)
