@@ -1,7 +1,8 @@
 #include "gtest/gtest.h"
 #include "datasource.h"
 
-TEST(BasicTest, CalcTest) {
+TEST(BasicTest, CalcTest)
+{
     auto a = reaction::var(1);
     auto b = reaction::var(3.14);
     EXPECT_EQ(a.get(), 1);
@@ -14,7 +15,8 @@ TEST(BasicTest, CalcTest) {
     EXPECT_EQ(dds.get(), "14.140000");
 }
 
-int main(int argc, char **argv) {
+int main(int argc, char **argv)
+{
     ::testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
 }
