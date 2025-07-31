@@ -89,6 +89,8 @@ namespace reaction
             }
     };
 
+    /// @brief
+    /// @tparam Type
     template<typename Type>
     class Expression<Type> : public Resource<Type>
     {
