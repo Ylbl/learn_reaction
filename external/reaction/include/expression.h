@@ -72,7 +72,7 @@ namespace reaction
                     return std::invoke(m_fun_, std::get<I>(m_args_).get().get()...);
                 }(std::make_index_sequence<std::tuple_size_v<decltype(m_args_)> >{});
 
-                this->update_value(result);
+                this->set_value(result);
             }
 
             /// @brief ...
@@ -85,8 +85,14 @@ namespace reaction
                   m_fun_(std::forward<F>(fun)),
                   m_args_(std::forward<A>(args)...)
             {
+                this->update_observers([this](){evaluate();}, std::forward<A>(args)...);
                 evaluate();
             }
+
+            Expression(const Expression &) = delete;
+            Expression &operator=(const Expression &) = delete;
+            Expression(Expression &&) = default;
+            Expression &operator=(Expression &&) = default;
     };
 
     /// @brief

@@ -8,10 +8,12 @@
 #include <memory>
 #include <stdexcept>
 
+#include "observerNode.h"
+
 namespace reaction
 {
     template<class T>
-    class Resource
+    class Resource :public ObserverNode
     {
         private:
             /// @brief 保存的值
@@ -35,9 +37,9 @@ namespace reaction
                 return *m_ptr_;
             }
 
-            /// @brief 更新值
+            /// @brief 设定值
             template<class Type>
-            void update_value(Type &&t)
+            void set_value(Type &&t)
             {
                 if (!m_ptr_)
                 {

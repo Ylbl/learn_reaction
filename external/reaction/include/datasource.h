@@ -25,6 +25,23 @@ namespace reaction
             {
                 return this->get_value();
             }
+
+            /// @brief 设定值
+            /// @tparam T
+            /// @param t
+            template<class T> void set(T &&t)
+            {
+                this->set_value(std::forward<T>(t));
+                this->notify();
+            }
+
+            Datasource(const Datasource &) = delete;
+
+            Datasource &operator=(const Datasource &) = delete;
+
+            Datasource(Datasource &&) = default;
+
+            Datasource &operator=(Datasource &&) = default;
     };
 
     /// @brief var
