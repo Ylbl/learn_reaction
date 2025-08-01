@@ -44,7 +44,7 @@ namespace reaction
             Datasource &operator=(Datasource &&) = default;
     };
 
-    /// @brief var
+    /// @brief 数据型
     /// @tparam Type
     /// @param t
     /// @return
@@ -53,7 +53,7 @@ namespace reaction
         return Datasource<Type>(std::forward<Type>(t));
     }
 
-    /// @brief calc
+    /// @brief 计算型
     /// @tparam Fun
     /// @tparam Args
     /// @param fun

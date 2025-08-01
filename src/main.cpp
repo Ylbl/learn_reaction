@@ -2,6 +2,7 @@
 #include "dataSource.h"
 #include <chrono>
 #include <numeric>
+#include "spdlog/spdlog.h"
 
 TEST(BasicTest, TriggerTest) {
     auto a = reaction::var(1);

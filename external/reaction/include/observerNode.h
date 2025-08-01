@@ -13,24 +13,28 @@ namespace reaction
     class ObserverNode
     {
         private:
-            std::vector<std::function<void()>> m_observers_;
+            /// @brief 观察者容器
+            std::vector<ObserverNode *> m_observers_;
 
         public:
-            void add_observer(const std::function<void()> &f)
+            /// @brief 虚函数
+            virtual void change_value() {}
+
+            /// @brief 添加观察者
+            /// args就是传进来的a b等组成的包
+            /// @tparam Args
+            /// @param args
+            template<class... Args> void add_observers(Args &&... args)
             {
-                m_observers_.emplace_back(f);
+                (..., args.m_observers_.emplace_back(this));
             }
 
-            template<class... Args> void update_observers(const std::function<void()> &f, Args &&... args)
-            {
-                (void)(...,args.add_observer(f));
-            }
-
+            /// @brief 通知观察者
             void notify()
             {
                 for (auto &observer: m_observers_)
                 {
-                    observer();
+                    observer->change_value();
                 }
             }
     };

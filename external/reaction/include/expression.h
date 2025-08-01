@@ -79,19 +79,26 @@ namespace reaction
             /// Resource<ReturnType<Fun, Args>>()初始化类就应该用这个类拿到的Fun,Args
             /// m_fun_(std::forward<F>(fun))自己的变量就用Expression(F&& fun, A&&... args)拿到的
         public:
+            void change_value() override
+            {
+                evaluate();
+            }
+
             template<class F, class... A>
             Expression(F &&fun, A &&... args)
                 : Resource<ReturnType<Fun, Args...> >(),
                   m_fun_(std::forward<F>(fun)),
                   m_args_(std::forward<A>(args)...)
             {
-                this->update_observers([this](){evaluate();}, std::forward<A>(args)...);
+                this->add_observers(args...);//此处给每个a b...都绑定了观察者
                 evaluate();
             }
-
             Expression(const Expression &) = delete;
+
             Expression &operator=(const Expression &) = delete;
+
             Expression(Expression &&) = default;
+
             Expression &operator=(Expression &&) = default;
     };
 
